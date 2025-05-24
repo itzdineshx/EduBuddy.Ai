@@ -1,182 +1,303 @@
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { SidebarTrigger } from '@/components/ui/sidebar';
 import { useNavigate } from 'react-router-dom';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { useToast } from '@/hooks/use-toast';
 import { 
-  ArrowLeft, 
-  FileText, 
-  Download, 
-  Share,
-  MoreHorizontal,
+  ArrowLeft,
+  Share2,
+  Download,
+  Edit,
+  Trash2,
   Play,
-  Pause
+  Pause,
+  BookOpen,
+  MessageSquare,
+  Brain,
+  Clock
 } from 'lucide-react';
 
 interface NoteViewerContentProps {
   noteId?: string;
 }
 
-const NoteViewerContent = ({ noteId }: NoteViewerContentProps) => {
+const NoteViewerContent: React.FC<NoteViewerContentProps> = ({ noteId }) => {
   const navigate = useNavigate();
-  const [note, setNote] = useState<any>(null);
+  const { toast } = useToast();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [note, setNote] = useState({
+    id: noteId || '1',
+    title: 'Supervised Learning and Model Evaluation',
+    subject: 'Machine Learning',
+    createdAt: '2024-01-15',
+    duration: '45 min',
+    source: 'Audio Recording',
+    content: `
+# Supervised Learning
 
-  useEffect(() => {
-    // Mock note data - replace with actual API call
-    setNote({
-      id: noteId,
-      title: 'Supervised Learning and Model Evaluation',
-      type: 'audio',
-      createdAt: 'Saturday, May 24th',
-      transcript: `Welcome to today's lesson on supervised learning and model evaluation. 
+Supervised learning is a type of machine learning where the algorithm learns from labeled training data. The goal is to learn a mapping from inputs to outputs based on example input-output pairs.
 
-In supervised learning, we work with labeled datasets where both input features and target outputs are known. This allows us to train models that can make predictions on new, unseen data.
+## Key Concepts
 
-Key concepts we'll cover today:
-1. Training and validation datasets
-2. Cross-validation techniques
-3. Performance metrics (accuracy, precision, recall, F1-score)
-4. Overfitting and underfitting
-5. Regularization methods
+### Regression
+- Regression helps find dependent and independent variables
+- If the output consists of one or more continuous variables, the technique is called regression
+- Regression algorithms help predict continuous values, such as house prices, market trends, weather patterns, or stock prices
 
-Let's start with understanding the difference between training and validation data...`,
-      summary: [
-        'Supervised learning uses labeled datasets for training',
-        'Cross-validation helps assess model performance',
-        'Key metrics include accuracy, precision, recall, and F1-score',
-        'Overfitting occurs when models memorize training data',
-        'Regularization techniques help prevent overfitting'
-      ],
-      tags: ['machine-learning', 'supervised-learning', 'data-science', 'validation'],
-      audioUrl: '/audio/sample.mp3' // Mock audio URL
+### Classification
+- Classification is used when the output variable is a category
+- Examples include spam detection, image recognition, and medical diagnosis
+- Common algorithms include logistic regression, decision trees, and support vector machines
+
+## Model Evaluation
+
+### Cross-Validation
+Cross-validation is a technique used to assess how well a machine learning model will perform on unseen data.
+
+### Metrics
+- **Accuracy**: The ratio of correctly predicted instances to total instances
+- **Precision**: The ratio of correctly predicted positive observations to total predicted positives
+- **Recall**: The ratio of correctly predicted positive observations to total actual positives
+- **F1-Score**: The weighted average of precision and recall
+
+## Practical Applications
+
+Supervised learning is widely used in:
+- Email spam filtering
+- Credit scoring
+- Medical diagnosis
+- Stock price prediction
+- Weather forecasting
+    `,
+    tags: ['Machine Learning', 'AI', 'Data Science'],
+    stats: {
+      readTime: '8 min',
+      views: 24,
+      lastAccessed: '2 hours ago'
+    }
+  });
+
+  const handleShare = () => {
+    toast({
+      title: "Note Shared",
+      description: "Share link copied to clipboard!",
     });
-  }, [noteId]);
+  };
 
-  if (!note) {
-    return (
-      <div className="flex-1 bg-gray-900 text-white flex items-center justify-center">
-        <div className="text-center">
-          <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-400">Loading note...</p>
-        </div>
-      </div>
-    );
-  }
+  const handleDownload = () => {
+    toast({
+      title: "Download Started",
+      description: "Your note is being downloaded as PDF.",
+    });
+  };
+
+  const handleEdit = () => {
+    toast({
+      title: "Edit Mode",
+      description: "Edit functionality will be available soon!",
+    });
+  };
+
+  const handleDelete = () => {
+    toast({
+      title: "Note Deleted",
+      description: "Note has been moved to trash.",
+      variant: "destructive",
+    });
+    navigate('/dashboard');
+  };
+
+  const handlePlayAudio = () => {
+    setIsPlaying(!isPlaying);
+    toast({
+      title: isPlaying ? "Audio Paused" : "Audio Playing",
+      description: isPlaying ? "Audio playback paused." : "Playing generated audio version.",
+    });
+  };
+
+  const handleGenerateFlashcards = () => {
+    toast({
+      title: "Generating Flashcards",
+      description: "Creating flashcards from your note content...",
+    });
+  };
+
+  const handleGenerateQuiz = () => {
+    toast({
+      title: "Generating Quiz",
+      description: "Creating a quiz based on your note content...",
+    });
+  };
+
+  const handleOpenChat = () => {
+    navigate('/playground');
+  };
 
   return (
-    <div className="flex-1 bg-gray-900 text-white">
+    <div className="flex-1 bg-black text-white min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between p-6 border-b border-gray-800">
-        <div className="flex items-center">
-          <SidebarTrigger className="text-white hover:bg-gray-800" />
+        <div className="flex items-center space-x-4">
+          <SidebarTrigger className="text-white hover:bg-gray-800/50" />
           <Button
             variant="ghost"
             onClick={() => navigate('/dashboard')}
-            className="ml-2 text-gray-400 hover:text-white"
+            className="text-gray-400 hover:text-white"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Dashboard
           </Button>
         </div>
+        
         <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
-            <Download className="h-4 w-4 mr-2" />
-            Export
-          </Button>
-          <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
-            <Share className="h-4 w-4 mr-2" />
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleShare}
+            className="border-gray-600 text-gray-300 hover:bg-gray-800"
+          >
+            <Share2 className="h-4 w-4 mr-1" />
             Share
           </Button>
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-            <MoreHorizontal className="h-4 w-4" />
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleDownload}
+            className="border-gray-600 text-gray-300 hover:bg-gray-800"
+          >
+            <Download className="h-4 w-4 mr-1" />
+            Download
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleEdit}
+            className="border-gray-600 text-gray-300 hover:bg-gray-800"
+          >
+            <Edit className="h-4 w-4 mr-1" />
+            Edit
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleDelete}
+            className="border-red-600 text-red-400 hover:bg-red-900/20"
+          >
+            <Trash2 className="h-4 w-4 mr-1" />
+            Delete
           </Button>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-6 max-w-4xl mx-auto">
-        {/* Note Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="p-2 bg-purple-600 rounded-lg">
-              <FileText className="h-6 w-6 text-white" />
+      <div className="flex">
+        {/* Main Content */}
+        <div className="flex-1 p-8">
+          {/* Note Header */}
+          <div className="mb-8">
+            <div className="flex items-center space-x-3 mb-4">
+              <Badge className="bg-blue-600 text-white">{note.subject}</Badge>
+              <Badge variant="outline" className="border-gray-600 text-gray-300">
+                {note.source}
+              </Badge>
+              <span className="text-gray-400 text-sm">{note.createdAt}</span>
             </div>
-            <div className="flex-1">
-              <h1 className="text-3xl font-bold text-white mb-2">{note.title}</h1>
-              <p className="text-gray-400">Created on {note.createdAt}</p>
+            
+            <h1 className="text-4xl font-bold text-white mb-4">{note.title}</h1>
+            
+            <div className="flex items-center space-x-6 text-gray-400">
+              <div className="flex items-center">
+                <Clock className="h-4 w-4 mr-1" />
+                {note.stats.readTime}
+              </div>
+              <span>•</span>
+              <span>{note.stats.views} views</span>
+              <span>•</span>
+              <span>Last accessed {note.stats.lastAccessed}</span>
             </div>
-            <Badge variant="secondary" className="bg-gray-700 text-gray-300">
-              {note.type}
-            </Badge>
           </div>
 
-          {/* Audio Player (if audio note) */}
-          {note.type === 'audio' && (
-            <Card className="bg-gray-800 border-gray-700 mb-6">
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-4">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    className="text-purple-400 hover:text-purple-300 hover:bg-gray-700"
-                  >
-                    {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
-                  </Button>
-                  <div className="flex-1">
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                      <div className="bg-purple-600 h-2 rounded-full" style={{ width: '35%' }}></div>
-                    </div>
-                  </div>
-                  <span className="text-gray-400 text-sm">12:34 / 35:20</span>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+          {/* Note Content */}
+          <div className="prose prose-invert max-w-none">
+            <div className="bg-gray-900/30 rounded-lg p-8 border border-gray-800">
+              <div className="whitespace-pre-wrap text-gray-300 leading-relaxed">
+                {note.content}
+              </div>
+            </div>
+          </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {note.tags.map((tag: string) => (
-              <Badge key={tag} variant="outline" className="border-purple-600 text-purple-400">
-                {tag}
-              </Badge>
-            ))}
+          <div className="mt-8">
+            <h3 className="text-lg font-semibold text-white mb-3">Tags</h3>
+            <div className="flex flex-wrap gap-2">
+              {note.tags.map((tag, index) => (
+                <Badge key={index} variant="outline" className="border-gray-600 text-gray-300">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Summary */}
-        <Card className="bg-gray-800 border-gray-700 mb-8">
-          <CardHeader>
-            <CardTitle className="text-white">Summary</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {note.summary.map((point: string, index: number) => (
-                <li key={index} className="flex items-start space-x-2 text-gray-300">
-                  <span className="text-purple-400 mt-1">•</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        {/* Sidebar Actions */}
+        <div className="w-80 border-l border-gray-800 p-6">
+          <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
+          
+          <div className="space-y-3 mb-8">
+            <Button
+              onClick={handlePlayAudio}
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white justify-start"
+            >
+              {isPlaying ? <Pause className="h-4 w-4 mr-2" /> : <Play className="h-4 w-4 mr-2" />}
+              {isPlaying ? 'Pause Audio' : 'Play Audio'}
+            </Button>
+            
+            <Button
+              onClick={handleGenerateFlashcards}
+              className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white justify-start"
+            >
+              <BookOpen className="h-4 w-4 mr-2" />
+              Generate Flashcards
+            </Button>
+            
+            <Button
+              onClick={handleGenerateQuiz}
+              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white justify-start"
+            >
+              <Brain className="h-4 w-4 mr-2" />
+              Generate Quiz
+            </Button>
+            
+            <Button
+              onClick={handleOpenChat}
+              className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white justify-start"
+            >
+              <MessageSquare className="h-4 w-4 mr-2" />
+              Ask AI Questions
+            </Button>
+          </div>
 
-        {/* Full Transcript */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Full Transcript</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="prose prose-invert max-w-none">
-              <div className="text-gray-300 whitespace-pre-line leading-relaxed">
-                {note.transcript}
+          {/* Note Stats */}
+          <Card className="bg-gray-900/50 border-gray-800 p-4">
+            <h4 className="font-semibold text-white mb-3">Note Statistics</h4>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-gray-400">Read Time:</span>
+                <span className="text-white">{note.stats.readTime}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-400">Views:</span>
+                <span className="text-white">{note.stats.views}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-400">Duration:</span>
+                <span className="text-white">{note.duration}</span>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </Card>
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,9 @@ import {
   Target,
   Zap,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Mic,
+  HelpCircle
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,112 +27,100 @@ const Features = () => {
   const features = [
     {
       icon: FileText,
-      title: 'AI Text Summarizer',
-      description: 'Transform lengthy documents, research papers, and articles into concise, digestible summaries.',
+      title: 'AI Note Generation',
+      description: 'Transform audio, video, and documents into comprehensive study notes instantly.',
       benefits: [
-        'Save hours of reading time',
-        'Extract key insights instantly',
-        'Support for multiple languages',
-        'Customizable summary length'
+        'Upload lectures and get structured notes',
+        'YouTube video summarization',
+        'PDF and document processing',
+        'Multi-format content support'
       ],
       badge: 'Most Popular',
-      color: 'blue'
+      color: 'from-blue-500 to-cyan-500'
     },
     {
       icon: MessageSquare,
-      title: 'Q&A Generator',
-      description: 'Create interactive quizzes and question sets from any content to test comprehension.',
+      title: 'AI Chat Assistant',
+      description: 'Ask questions about your content and get intelligent responses.',
       benefits: [
-        'Generate multiple choice questions',
-        'Create true/false assessments',
-        'Short answer questions',
-        'Instant grading and feedback'
+        'Context-aware responses',
+        'Multi-language support',
+        'Real-time assistance',
+        'Smart content analysis'
       ],
       badge: 'New',
-      color: 'green'
+      color: 'from-purple-500 to-pink-500'
     },
     {
-      icon: PenTool,
-      title: 'Essay Writing Assistant',
-      description: 'Get intelligent help with writing essays, reports, and academic papers.',
+      icon: Mic,
+      title: 'Podcast Generation',
+      description: 'Convert your notes into engaging podcast-style audio content.',
       benefits: [
-        'Structure and outline generation',
-        'Grammar and style suggestions',
-        'Citation assistance',
-        'Plagiarism detection'
+        'Natural voice synthesis',
+        'Multiple voice options',
+        'Custom pacing control',
+        'Background music options'
       ],
       badge: null,
-      color: 'purple'
-    },
-    {
-      icon: Code,
-      title: 'Code Explanation Tool',
-      description: 'Understand complex code snippets with AI-powered explanations and suggestions.',
-      benefits: [
-        'Line-by-line code analysis',
-        'Algorithm explanations',
-        'Bug detection and fixes',
-        'Code optimization tips'
-      ],
-      badge: null,
-      color: 'orange'
-    },
-    {
-      icon: Brain,
-      title: 'Concept Mapping',
-      description: 'Visualize relationships between ideas and create interactive knowledge maps.',
-      benefits: [
-        'Visual learning aids',
-        'Connection identification',
-        'Mind map generation',
-        'Knowledge organization'
-      ],
-      badge: 'Beta',
-      color: 'indigo'
+      color: 'from-green-500 to-emerald-500'
     },
     {
       icon: BookOpen,
-      title: 'Study Planner',
-      description: 'Create personalized study schedules and learning paths based on your goals.',
+      title: 'Smart Flashcards',
+      description: 'Generate interactive flashcards from any content for effective memorization.',
       benefits: [
-        'Adaptive scheduling',
+        'Spaced repetition algorithm',
         'Progress tracking',
-        'Deadline management',
-        'Goal setting and milestones'
+        'Custom difficulty levels',
+        'Export and sharing options'
       ],
       badge: null,
-      color: 'pink'
+      color: 'from-orange-500 to-red-500'
+    },
+    {
+      icon: HelpCircle,
+      title: 'Quiz Generator',
+      description: 'Create comprehensive quizzes to test your understanding.',
+      benefits: [
+        'Multiple choice questions',
+        'True/false assessments',
+        'Short answer questions',
+        'Instant feedback and scoring'
+      ],
+      badge: 'Beta',
+      color: 'from-indigo-500 to-purple-500'
+    },
+    {
+      icon: Brain,
+      title: 'AI Study Planner',
+      description: 'Get personalized study schedules based on your learning goals.',
+      benefits: [
+        'Adaptive scheduling',
+        'Progress monitoring',
+        'Deadline management',
+        'Performance analytics'
+      ],
+      badge: null,
+      color: 'from-teal-500 to-blue-500'
     }
   ];
 
-  const getColorClasses = (color: string) => {
-    const colors = {
-      blue: 'bg-blue-100 text-blue-600',
-      green: 'bg-green-100 text-green-600',
-      purple: 'bg-purple-100 text-purple-600',
-      orange: 'bg-orange-100 text-orange-600',
-      indigo: 'bg-indigo-100 text-indigo-600',
-      pink: 'bg-pink-100 text-pink-600',
-    };
-    return colors[color as keyof typeof colors] || colors.blue;
-  };
-
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+        <section className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Powerful AI Learning Features
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
               Discover comprehensive AI-powered tools designed to accelerate your learning journey and boost productivity.
             </p>
             <Button
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-8"
               onClick={() => navigate('/playground')}
             >
               Try All Features
@@ -140,24 +130,24 @@ const Features = () => {
         </section>
 
         {/* Features Grid */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
                 return (
-                  <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  <Card key={index} className="bg-gray-900/50 border-gray-800 overflow-hidden hover:bg-gray-900/80 transition-all duration-300 hover:border-purple-500/50">
                     <CardHeader>
                       <div className="flex items-center justify-between mb-4">
-                        <div className={`p-3 rounded-lg ${getColorClasses(feature.color)}`}>
-                          <Icon className="h-8 w-8" />
+                        <div className={`p-3 rounded-xl bg-gradient-to-r ${feature.color}`}>
+                          <Icon className="h-8 w-8 text-white" />
                         </div>
                         {feature.badge && (
-                          <Badge variant="secondary">{feature.badge}</Badge>
+                          <Badge className="bg-purple-600 text-white">{feature.badge}</Badge>
                         )}
                       </div>
-                      <CardTitle className="text-2xl font-bold">{feature.title}</CardTitle>
-                      <CardDescription className="text-lg text-gray-600">
+                      <CardTitle className="text-2xl font-bold text-white">{feature.title}</CardTitle>
+                      <CardDescription className="text-lg text-gray-400">
                         {feature.description}
                       </CardDescription>
                     </CardHeader>
@@ -166,13 +156,12 @@ const Features = () => {
                         {feature.benefits.map((benefit, benefitIndex) => (
                           <li key={benefitIndex} className="flex items-center">
                             <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                            <span className="text-gray-700">{benefit}</span>
+                            <span className="text-gray-300">{benefit}</span>
                           </li>
                         ))}
                       </ul>
                       <Button
-                        variant="outline"
-                        className="w-full group"
+                        className="w-full bg-gradient-to-r from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 text-white border border-gray-600 group"
                         onClick={() => navigate('/playground')}
                       >
                         Try {feature.title}
@@ -187,19 +176,19 @@ const Features = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gradient-to-r from-purple-900/20 to-blue-900/20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <Target className="h-16 w-16 text-blue-600 mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <Target className="h-16 w-16 text-purple-400 mx-auto mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Ready to Accelerate Your Learning?
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-300 mb-8">
               Join thousands of students and educators who are already using our AI-powered tools to enhance their learning experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold"
                 onClick={() => navigate('/signup')}
               >
                 Start Free Trial
@@ -208,6 +197,7 @@ const Features = () => {
               <Button
                 variant="outline"
                 size="lg"
+                className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
                 onClick={() => navigate('/contact')}
               >
                 Contact Sales
