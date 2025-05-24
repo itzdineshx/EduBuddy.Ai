@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import PdfViewerContent from './PdfViewerContent';
@@ -166,20 +167,23 @@ const PlaygroundContent = () => {
   };
 
   return (
-    <div className="flex-1 bg-black text-white">
+    <div className="flex-1 bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-gray-800 p-4 flex items-center justify-between">
+      <div className="border-b border-border p-4 flex items-center justify-between bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex items-center space-x-3">
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
             <X className="h-4 w-4" />
           </Button>
-          <h1 className="text-lg font-semibold">{currentNote}</h1>
+          <h1 className="text-lg font-semibold text-foreground">{currentNote}</h1>
+          <Badge variant="secondary" className="ml-2">
+            Active Session
+          </Badge>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
             Close Chat
           </Button>
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
             <MessageSquare className="h-4 w-4" />
           </Button>
         </div>
@@ -187,22 +191,22 @@ const PlaygroundContent = () => {
 
       <div className="flex flex-1">
         {/* Main Content */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-6 bg-background">
           {/* Quick Actions */}
           <div className="grid grid-cols-3 gap-4 mb-8">
             {quickActions.map((action) => (
               <Card 
                 key={action.id}
-                className="bg-gray-900 border-gray-800 p-4 cursor-pointer hover:bg-gray-800 transition-colors"
+                className="bg-card border-border p-4 cursor-pointer hover:bg-accent/50 transition-all duration-200 hover:shadow-lg hover:scale-105"
                 onClick={() => setSelectedTool(action.id)}
               >
                 <div className="flex items-center space-x-3">
-                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${action.color} flex items-center justify-center text-white text-lg`}>
+                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${action.color} flex items-center justify-center text-white text-lg shadow-md`}>
                     {action.icon}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">{action.name}</h3>
-                    <p className="text-sm text-gray-400">{action.description}</p>
+                    <h3 className="font-semibold text-foreground">{action.name}</h3>
+                    <p className="text-sm text-muted-foreground">{action.description}</p>
                   </div>
                 </div>
               </Card>
@@ -212,30 +216,30 @@ const PlaygroundContent = () => {
           {/* Note Content */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
-                <FileText className="h-4 w-4 text-white" />
+              <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                <FileText className="h-4 w-4 text-primary-foreground" />
               </div>
-              <h2 className="text-2xl font-bold">Supervised Learning</h2>
+              <h2 className="text-2xl font-bold text-foreground">Supervised Learning</h2>
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-blue-400">Regression</h3>
+              <h3 className="text-xl font-semibold text-primary">Regression</h3>
               
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Regression helps find dependent and independent variables. If the output 
                 consists of one or more continuous variables, the technique is called regression. 
                 Regression algorithms help predict continuous values, such as house prices, 
                 market trends, weather patterns, or stock prices.
               </p>
 
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Regression analysis is a set of statistical methods used for the estimation of 
                 relationships between a dependent variable and one or more independent 
                 variables.
               </p>
 
-              <div className="border-l-4 border-purple-500 pl-4 py-2 bg-gray-900/50 rounded-r">
-                <p className="text-gray-300 italic">
+              <div className="border-l-4 border-primary pl-4 py-2 bg-accent/30 rounded-r">
+                <p className="text-foreground italic">
                   "Regression is a statistical method to summarize the average relationship 
                   between two continuous quantitative variables."
                 </p>
@@ -245,20 +249,21 @@ const PlaygroundContent = () => {
         </div>
 
         {/* Chat Sidebar */}
-        <div className="w-80 border-l border-gray-800 flex flex-col">
+        <div className="w-80 border-l border-border flex flex-col bg-card">
           {/* Chat Header */}
-          <div className="p-4 border-b border-gray-800">
-            <h3 className="font-semibold text-white mb-2">Ask me any question about your notes or content!</h3>
+          <div className="p-4 border-b border-border bg-card">
+            <h3 className="font-semibold text-foreground mb-2">AI Assistant</h3>
+            <p className="text-sm text-muted-foreground">Ask me any question about your notes or content!</p>
           </div>
 
           {/* Chat Messages */}
           <div className="flex-1 p-4 space-y-4 overflow-y-auto">
             {chatHistory.map((message, index) => (
               <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] p-3 rounded-lg ${
+                <div className={`max-w-[80%] p-3 rounded-lg shadow-sm ${
                   message.type === 'user' 
-                    ? 'bg-purple-600 text-white' 
-                    : 'bg-gray-800 text-gray-200'
+                    ? 'bg-primary text-primary-foreground' 
+                    : 'bg-muted text-muted-foreground'
                 }`}>
                   <p className="text-sm">{message.content}</p>
                 </div>
@@ -266,7 +271,7 @@ const PlaygroundContent = () => {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-gray-800 text-gray-200 p-3 rounded-lg">
+                <div className="bg-muted text-muted-foreground p-3 rounded-lg">
                   <Loader2 className="h-4 w-4 animate-spin" />
                 </div>
               </div>
@@ -274,14 +279,14 @@ const PlaygroundContent = () => {
           </div>
 
           {/* Chat Input */}
-          <div className="p-4 border-t border-gray-800">
+          <div className="p-4 border-t border-border bg-card">
             <div className="flex items-center space-x-2 mb-2">
               <input
                 type="checkbox"
                 id="proMode"
-                className="rounded border-gray-600 bg-gray-800"
+                className="rounded border-border bg-background"
               />
-              <label htmlFor="proMode" className="text-sm text-gray-400 italic">
+              <label htmlFor="proMode" className="text-sm text-muted-foreground italic">
                 Pro Mode
               </label>
             </div>
@@ -291,13 +296,13 @@ const PlaygroundContent = () => {
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Type a question here..."
-                className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
+                className="bg-background border-border text-foreground placeholder:text-muted-foreground"
                 disabled={isLoading}
               />
               <Button
                 onClick={handleSendMessage}
                 disabled={isLoading || !chatMessage.trim()}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-3"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-3"
               >
                 <Send className="h-4 w-4" />
               </Button>

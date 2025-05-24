@@ -8,11 +8,11 @@ import PlaygroundContent from '@/components/PlaygroundContent';
 
 const Playground = () => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-background">
       <SidebarProvider>
         <div className="flex min-h-screen w-full">
           <DashboardSidebar />
-          <main className="flex-1 flex flex-col">
+          <main className="flex-1 flex flex-col bg-background">
             <PlaygroundContent />
           </main>
         </div>

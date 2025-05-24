@@ -22,6 +22,7 @@ import {
   Sparkles,
   ChevronLeft
 } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const DashboardSidebar = () => {
   const navigate = useNavigate();
@@ -29,10 +30,8 @@ const DashboardSidebar = () => {
 
   const handleNavigation = (path: string, tool?: string) => {
     if (path === '/playground' && tool) {
-      // Navigate to playground with specific tool
       navigate(path, { state: { tool } });
     } else if (path === '/settings') {
-      // Navigate directly to settings page
       navigate('/settings');
     } else {
       navigate(path);
@@ -59,31 +58,33 @@ const DashboardSidebar = () => {
   ];
 
   return (
-    <Sidebar className="bg-gray-950 border-gray-800">
-      <SidebarHeader className="p-6">
-        <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
-            <Brain className="h-6 w-6 text-white" />
+    <Sidebar className="border-r border-border bg-background">
+      <SidebarHeader className="p-6 border-b border-border">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
+              <Brain className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-foreground font-bold text-xl">turbolearn ai</span>
           </div>
-          <span className="text-white font-bold text-xl">turbolearn ai</span>
-          <ChevronLeft className="h-4 w-4 text-gray-400 ml-auto" />
+          <ThemeToggle />
         </div>
       </SidebarHeader>
       
-      <SidebarContent className="px-4">
+      <SidebarContent className="px-4 py-2">
         <SidebarMenu>
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.id}>
               <SidebarMenuButton 
                 isActive={isActive(item.path, item.tool)}
-                className={`text-white ${
+                className={`w-full justify-start transition-all duration-200 ${
                   isActive(item.path, item.tool)
-                    ? 'bg-gray-800 border-l-4 border-purple-500' 
-                    : 'text-gray-300 hover:text-white'
-                } hover:bg-gray-800/50 rounded-xl py-3 px-4 font-medium`}
+                    ? 'bg-primary/10 text-primary border-l-4 border-primary shadow-sm' 
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                } rounded-lg py-3 px-4 font-medium mb-1`}
                 onClick={() => handleNavigation(item.path, item.tool)}
               >
-                <item.icon className="h-5 w-5" />
+                <item.icon className="h-5 w-5 mr-3" />
                 <span>{item.name}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -91,21 +92,22 @@ const DashboardSidebar = () => {
         </SidebarMenu>
       </SidebarContent>
       
-      <SidebarFooter className="p-6">
+      <SidebarFooter className="p-6 border-t border-border">
         <Button 
-          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-xl mb-4"
+          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-xl mb-4 shadow-lg hover:shadow-xl transition-all duration-200"
           onClick={() => navigate('/pricing')}
         >
           <Sparkles className="h-4 w-4 mr-2" />
           Upgrade to Premium
         </Button>
         
-        <div className="flex items-center space-x-3 p-3 bg-gray-900/50 rounded-xl">
+        <div className="flex items-center space-x-3 p-3 bg-accent/50 rounded-xl border border-border">
           <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
             <span className="text-white text-sm font-bold">F</span>
           </div>
           <div className="flex-1">
-            <p className="text-white font-medium text-sm">Free Fire</p>
+            <p className="text-foreground font-medium text-sm">Free Fire</p>
+            <p className="text-muted-foreground text-xs">Free Plan</p>
           </div>
         </div>
       </SidebarFooter>
