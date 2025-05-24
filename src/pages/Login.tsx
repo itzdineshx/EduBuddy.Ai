@@ -29,7 +29,7 @@ const Login = () => {
     });
 
     // Redirect to dashboard
-    navigate('/app');
+    navigate('/dashboard');
     setIsLoading(false);
   };
 
