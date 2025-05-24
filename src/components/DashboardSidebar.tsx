@@ -24,21 +24,23 @@ const DashboardSidebar = () => {
   const location = useLocation();
 
   return (
-    <Sidebar className="bg-gray-800 border-gray-700">
-      <SidebarHeader className="p-4">
-        <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/')}>
-          <Brain className="h-8 w-8 text-blue-400" />
-          <span className="text-white font-semibold text-lg">turbolearn ai</span>
+    <Sidebar className="bg-gray-950 border-gray-800">
+      <SidebarHeader className="p-6">
+        <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+          <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
+            <Brain className="h-6 w-6 text-white" />
+          </div>
+          <span className="text-white font-bold text-xl">turbolearn.ai</span>
           <ChevronLeft className="h-4 w-4 text-gray-400 ml-auto" />
         </div>
       </SidebarHeader>
       
-      <SidebarContent className="px-2">
+      <SidebarContent className="px-4">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
               isActive={location.pathname === '/dashboard'}
-              className={`text-white ${location.pathname === '/dashboard' ? 'bg-gray-700' : ''} hover:bg-gray-600`}
+              className={`text-white ${location.pathname === '/dashboard' ? 'bg-gray-800 border-l-4 border-purple-500' : ''} hover:bg-gray-800/50 rounded-xl py-3 px-4 font-medium`}
               onClick={() => navigate('/dashboard')}
             >
               <Home className="h-5 w-5" />
@@ -49,7 +51,7 @@ const DashboardSidebar = () => {
           <SidebarMenuItem>
             <SidebarMenuButton 
               isActive={location.pathname === '/settings'}
-              className={`text-gray-300 ${location.pathname === '/settings' ? 'bg-gray-700 text-white' : ''} hover:text-white hover:bg-gray-700`}
+              className={`text-gray-300 ${location.pathname === '/settings' ? 'bg-gray-800 border-l-4 border-purple-500 text-white' : ''} hover:text-white hover:bg-gray-800/50 rounded-xl py-3 px-4 font-medium`}
               onClick={() => navigate('/settings')}
             >
               <Settings className="h-5 w-5" />
@@ -59,20 +61,23 @@ const DashboardSidebar = () => {
         </SidebarMenu>
       </SidebarContent>
       
-      <SidebarFooter className="p-4">
+      <SidebarFooter className="p-6">
         <Button 
-          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-xl"
           onClick={() => navigate('/pricing')}
         >
           <Sparkles className="h-4 w-4 mr-2" />
-          Upgrade to Premium
+          Upgrade to Pro
         </Button>
         
-        <div className="mt-4 flex items-center space-x-3">
-          <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-            <span className="text-white text-sm font-medium">F</span>
+        <div className="mt-6 flex items-center space-x-3 p-3 bg-gray-900/50 rounded-xl">
+          <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+            <span className="text-white text-sm font-bold">U</span>
           </div>
-          <span className="text-gray-300 text-sm">Free Fire</span>
+          <div className="flex-1">
+            <p className="text-white font-medium text-sm">Free User</p>
+            <p className="text-gray-400 text-xs">5 notes remaining</p>
+          </div>
         </div>
       </SidebarFooter>
     </Sidebar>

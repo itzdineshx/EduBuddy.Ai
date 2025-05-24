@@ -1,36 +1,14 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { 
-  Sidebar, 
-  SidebarContent, 
-  SidebarProvider, 
-  SidebarTrigger,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarFooter
+  SidebarProvider
 } from '@/components/ui/sidebar';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Brain, 
-  Home, 
-  Settings, 
-  Mic, 
-  Youtube, 
-  FileText, 
-  FolderPlus,
-  MoreHorizontal,
-  Sparkles
-} from 'lucide-react';
 import DashboardSidebar from '@/components/DashboardSidebar';
 import DashboardContent from '@/components/DashboardContent';
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       <SidebarProvider>
         <div className="flex min-h-screen w-full">
           <DashboardSidebar />

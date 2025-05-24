@@ -11,7 +11,7 @@ const NoteViewer = () => {
   const { id } = useParams();
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       <SidebarProvider>
         <div className="flex min-h-screen w-full">
           <DashboardSidebar />
