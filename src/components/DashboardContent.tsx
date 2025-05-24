@@ -1,21 +1,39 @@
 
 import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { useToast } from '@/hooks/use-toast';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 import { 
   Mic, 
   Youtube, 
-  FileText, 
-  FolderPlus,
-  MoreHorizontal,
-  SidebarOpen
+  FileText
 } from 'lucide-react';
-import { SidebarTrigger } from '@/components/ui/sidebar';
 import CreateNoteCard from '@/components/CreateNoteCard';
 import NotesSection from '@/components/NotesSection';
 
 const DashboardContent = () => {
+  const { toast } = useToast();
+
+  const handleAudioUpload = () => {
+    toast({
+      title: "Audio Upload",
+      description: "Audio upload feature coming soon!",
+    });
+  };
+
+  const handleYouTubeUpload = () => {
+    toast({
+      title: "YouTube Video",
+      description: "YouTube processing feature coming soon!",
+    });
+  };
+
+  const handleDocumentUpload = () => {
+    toast({
+      title: "Document Upload",
+      description: "Document upload feature coming soon!",
+    });
+  };
+
   return (
     <div className="flex-1 bg-gray-900 text-white">
       {/* Header */}
@@ -36,18 +54,21 @@ const DashboardContent = () => {
             title="Record or upload audio"
             description="Upload an audio file"
             color="purple"
+            onClick={handleAudioUpload}
           />
           <CreateNoteCard
             icon={Youtube}
             title="YouTube video"
             description="Paste a YouTube link"
             color="red"
+            onClick={handleYouTubeUpload}
           />
           <CreateNoteCard
             icon={FileText}
             title="Document upload"
             description="Any PDF, DOC, PPT, etc!"
             color="blue"
+            onClick={handleDocumentUpload}
           />
         </div>
 

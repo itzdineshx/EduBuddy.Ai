@@ -8,9 +8,10 @@ interface CreateNoteCardProps {
   title: string;
   description: string;
   color: 'purple' | 'red' | 'blue';
+  onClick?: () => void;
 }
 
-const CreateNoteCard = ({ icon: Icon, title, description, color }: CreateNoteCardProps) => {
+const CreateNoteCard = ({ icon: Icon, title, description, color, onClick }: CreateNoteCardProps) => {
   const getColorClasses = () => {
     switch (color) {
       case 'purple':
@@ -25,7 +26,10 @@ const CreateNoteCard = ({ icon: Icon, title, description, color }: CreateNoteCar
   };
 
   return (
-    <Card className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer">
+    <Card 
+      className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer"
+      onClick={onClick}
+    >
       <CardContent className="p-6">
         <div className="flex items-start space-x-4">
           <div className={`p-3 rounded-lg ${getColorClasses()}`}>

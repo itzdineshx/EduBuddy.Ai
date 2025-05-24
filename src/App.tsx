@@ -13,6 +13,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Playground from "./pages/Playground";
 import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import NoteViewer from "./pages/NoteViewer";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +35,8 @@ const App = () => (
           <Route path="/signup" element={<Signup />} />
           <Route path="/playground" element={<Playground />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/note/:id" element={<NoteViewer />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

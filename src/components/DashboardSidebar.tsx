@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   Sidebar, 
   SidebarContent, 
@@ -19,10 +20,13 @@ import {
 } from 'lucide-react';
 
 const DashboardSidebar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <Sidebar className="bg-gray-800 border-gray-700">
       <SidebarHeader className="p-4">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/')}>
           <Brain className="h-8 w-8 text-blue-400" />
           <span className="text-white font-semibold text-lg">turbolearn ai</span>
           <ChevronLeft className="h-4 w-4 text-gray-400 ml-auto" />
@@ -33,8 +37,9 @@ const DashboardSidebar = () => {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
-              isActive={true}
-              className="text-white bg-gray-700 hover:bg-gray-600"
+              isActive={location.pathname === '/dashboard'}
+              className={`text-white ${location.pathname === '/dashboard' ? 'bg-gray-700' : ''} hover:bg-gray-600`}
+              onClick={() => navigate('/dashboard')}
             >
               <Home className="h-5 w-5" />
               <span>Dashboard</span>
@@ -42,7 +47,11 @@ const DashboardSidebar = () => {
           </SidebarMenuItem>
           
           <SidebarMenuItem>
-            <SidebarMenuButton className="text-gray-300 hover:text-white hover:bg-gray-700">
+            <SidebarMenuButton 
+              isActive={location.pathname === '/settings'}
+              className={`text-gray-300 ${location.pathname === '/settings' ? 'bg-gray-700 text-white' : ''} hover:text-white hover:bg-gray-700`}
+              onClick={() => navigate('/settings')}
+            >
               <Settings className="h-5 w-5" />
               <span>Settings</span>
             </SidebarMenuButton>
@@ -51,7 +60,10 @@ const DashboardSidebar = () => {
       </SidebarContent>
       
       <SidebarFooter className="p-4">
-        <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white">
+        <Button 
+          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+          onClick={() => navigate('/pricing')}
+        >
           <Sparkles className="h-4 w-4 mr-2" />
           Upgrade to Premium
         </Button>

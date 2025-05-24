@@ -1,8 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { FolderPlus, MoreHorizontal, FileText } from 'lucide-react';
+import { FolderPlus } from 'lucide-react';
 import NoteCard from '@/components/NoteCard';
 
 const NotesSection = () => {
@@ -37,6 +36,7 @@ const NotesSection = () => {
         {notes.map((note) => (
           <NoteCard
             key={note.id}
+            id={note.id}
             title={note.title}
             createdAt={note.createdAt}
             type={note.type}
