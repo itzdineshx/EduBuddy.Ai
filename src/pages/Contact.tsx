@@ -1,226 +1,201 @@
 
-import React, { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
-
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-    setIsSubmitting(false);
+    // Handle form submission
+    console.log('Form submitted');
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      title: 'Email',
-      content: 'support@turbolearn.ai',
-      subtitle: 'We typically respond within 2 hours'
+      title: "Email",
+      details: "hello@turbolearn.ai",
+      description: "Send us an email anytime"
     },
     {
       icon: Phone,
-      title: 'Phone',
-      content: '+1 (555) 123-4567',
-      subtitle: 'Monday to Friday, 9 AM to 6 PM PST'
+      title: "Phone",
+      details: "+1 (555) 123-4567",
+      description: "Mon-Fri from 8am to 6pm PST"
     },
     {
       icon: MapPin,
-      title: 'Office',
-      content: 'San Francisco, CA',
-      subtitle: 'Remote-first company'
+      title: "Office",
+      details: "San Francisco, CA",
+      description: "123 Innovation Drive, Suite 100"
     },
     {
       icon: Clock,
-      title: 'Support Hours',
-      content: '24/7 Chat Support',
-      subtitle: 'Live chat available on our platform'
+      title: "Support Hours",
+      details: "24/7 Online Support",
+      description: "We're here when you need us"
     }
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       <Header />
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Get in Touch
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Have questions about Turbolearn.ai? We're here to help you succeed in your learning journey.
-            </p>
-          </div>
-        </section>
+      
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-8">
+            Get in
+            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"> Touch</span>
+          </h1>
+          <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Have questions about TurboLearn? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          </p>
+        </div>
+      </section>
 
-        {/* Contact Form and Info */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-2xl font-bold">Send us a Message</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name">Name *</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          type="text"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
-                          className="mt-1"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Email *</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                          className="mt-1"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="subject">Subject *</Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-1"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        required
-                        rows={6}
-                        className="mt-1"
-                        placeholder="Tell us how we can help you..."
-                      />
-                    </div>
-                    
-                    <Button
-                      type="submit"
-                      className="w-full bg-blue-600 hover:bg-blue-700"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-
-              {/* Contact Information */}
+      {/* Contact Section */}
+      <section className="py-20 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            {/* Contact Info */}
+            <div className="lg:col-span-1">
+              <h2 className="text-3xl font-bold text-foreground mb-8">Contact Information</h2>
               <div className="space-y-8">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                    Contact Information
-                  </h2>
-                  <p className="text-gray-600 mb-8">
-                    We're here to help you make the most of your AI-powered learning experience. 
-                    Reach out to us through any of the channels below.
-                  </p>
-                </div>
+                {contactInfo.map((info, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                      <info.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground mb-1">{info.title}</h3>
+                      <p className="text-foreground font-medium mb-1">{info.details}</p>
+                      <p className="text-muted-foreground text-sm">{info.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-                <div className="space-y-6">
-                  {contactInfo.map((info, index) => {
-                    const Icon = info.icon;
-                    return (
-                      <Card key={index} className="border-l-4 border-l-blue-500">
-                        <CardContent className="p-6">
-                          <div className="flex items-start">
-                            <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                              <Icon className="h-6 w-6 text-blue-600" />
-                            </div>
-                            <div>
-                              <h3 className="font-semibold text-gray-900 mb-1">{info.title}</h3>
-                              <p className="text-gray-900 font-medium">{info.content}</p>
-                              <p className="text-gray-600 text-sm mt-1">{info.subtitle}</p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-
-                {/* FAQ Link */}
-                <Card className="bg-gray-50">
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Looking for quick answers?
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      Check out our comprehensive documentation and FAQ section for instant help.
-                    </p>
-                    <Button variant="outline" className="w-full">
-                      Visit Help Center
-                    </Button>
-                  </CardContent>
-                </Card>
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <div className="bg-card border border-border rounded-2xl p-8">
+                <h2 className="text-3xl font-bold text-foreground mb-8">Send us a Message</h2>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        First Name
+                      </label>
+                      <Input
+                        type="text"
+                        placeholder="John"
+                        className="w-full"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Last Name
+                      </label>
+                      <Input
+                        type="text"
+                        placeholder="Doe"
+                        className="w-full"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Email
+                    </label>
+                    <Input
+                      type="email"
+                      placeholder="john@example.com"
+                      className="w-full"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Subject
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder="How can we help you?"
+                      className="w-full"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Message
+                    </label>
+                    <Textarea
+                      placeholder="Tell us more about your inquiry..."
+                      className="w-full min-h-[120px]"
+                      required
+                    />
+                  </div>
+                  
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-xl"
+                  >
+                    Send Message
+                  </Button>
+                </form>
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-6 lg:px-8 bg-accent/50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-foreground mb-6">Common Questions</h2>
+            <p className="text-xl text-muted-foreground">
+              Quick answers to questions you might have.
+            </p>
+          </div>
+          
+          <div className="space-y-6">
+            {[
+              {
+                question: "How quickly will I hear back?",
+                answer: "We typically respond to all inquiries within 24 hours during business days."
+              },
+              {
+                question: "Do you offer phone support?",
+                answer: "Yes, phone support is available for Pro and Team plan subscribers during business hours."
+              },
+              {
+                question: "Can I schedule a demo?",
+                answer: "Absolutely! Contact us to schedule a personalized demo of TurboLearn's features."
+              },
+              {
+                question: "Do you have a help center?",
+                answer: "Yes, we have a comprehensive help center with tutorials, guides, and troubleshooting tips."
+              }
+            ].map((faq, index) => (
+              <div key={index} className="bg-card border border-border rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-foreground mb-3">{faq.question}</h3>
+                <p className="text-muted-foreground">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
