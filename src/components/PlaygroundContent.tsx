@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PdfViewerContent from './PdfViewerContent';
 import PodcastContent from './PodcastContent';
 import FlashcardsContent from './FlashcardsContent';
 import QuizContent from './QuizContent';
+import SettingsContent from './SettingsContent';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -16,11 +18,13 @@ import {
   X,
   Send,
   Loader2,
-  Sparkles
+  Sparkles,
+  Settings
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const PlaygroundContent = () => {
+  const location = useLocation();
   const [selectedTool, setSelectedTool] = useState('notes');
   const [currentNote, setCurrentNote] = useState('Supervised Learning and Model Evaluation');
   const [chatMessage, setMessage] = useState('');
@@ -32,6 +36,13 @@ const PlaygroundContent = () => {
     }
   ]);
   const { toast } = useToast();
+
+  // Handle tool selection from navigation state
+  useEffect(() => {
+    if (location.state?.tool) {
+      setSelectedTool(location.state.tool);
+    }
+  }, [location.state]);
 
   // Render different components based on selected tool
   if (selectedTool === 'notes') {
@@ -50,14 +61,17 @@ const PlaygroundContent = () => {
     return <QuizContent />;
   }
 
+  if (selectedTool === 'settings') {
+    return <SettingsContent />;
+  }
+
   const tools = [
     { id: 'notes', name: 'Notes', icon: FileText },
     { id: 'chat', name: 'Chat Bot', icon: MessageSquare },
     { id: 'podcast', name: 'Podcast', icon: Mic },
     { id: 'flashcards', name: 'Flashcards', icon: BookOpen },
     { id: 'quiz', name: 'Quiz', icon: HelpCircle },
-    { id: 'transcript', name: 'Transcript', icon: FileText },
-    { id: 'settings', name: 'Settings', icon: Sparkles }
+    { id: 'settings', name: 'Settings', icon: Settings }
   ];
 
   const quickActions = [

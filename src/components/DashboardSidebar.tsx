@@ -31,18 +31,30 @@ const DashboardSidebar = () => {
     if (path === '/playground' && tool) {
       // Navigate to playground with specific tool
       navigate(path, { state: { tool } });
+    } else if (path === '/settings') {
+      // Navigate directly to settings page
+      navigate('/settings');
     } else {
       navigate(path);
     }
   };
 
+  const isActive = (path: string, tool?: string) => {
+    if (path === '/settings') {
+      return location.pathname === '/settings';
+    }
+    if (path === '/playground' && tool) {
+      return location.pathname === '/playground';
+    }
+    return location.pathname === path;
+  };
+
   const menuItems = [
-    { id: 'notes', name: 'Notes', icon: FileText, path: '/dashboard' },
+    { id: 'notes', name: 'Notes', icon: FileText, path: '/playground', tool: 'notes' },
     { id: 'chatbot', name: 'Chat Bot', icon: MessageSquare, path: '/playground', tool: 'chat' },
     { id: 'podcast', name: 'Podcast', icon: Mic, path: '/playground', tool: 'podcast' },
     { id: 'flashcards', name: 'Flashcards', icon: BookOpen, path: '/playground', tool: 'flashcards' },
     { id: 'quiz', name: 'Quiz', icon: HelpCircle, path: '/playground', tool: 'quiz' },
-    { id: 'transcript', name: 'Transcript', icon: FileText, path: '/playground', tool: 'notes' },
     { id: 'settings', name: 'Settings', icon: Settings, path: '/settings' }
   ];
 
@@ -63,9 +75,9 @@ const DashboardSidebar = () => {
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.id}>
               <SidebarMenuButton 
-                isActive={location.pathname === item.path}
+                isActive={isActive(item.path, item.tool)}
                 className={`text-white ${
-                  location.pathname === item.path 
+                  isActive(item.path, item.tool)
                     ? 'bg-gray-800 border-l-4 border-purple-500' 
                     : 'text-gray-300 hover:text-white'
                 } hover:bg-gray-800/50 rounded-xl py-3 px-4 font-medium`}
