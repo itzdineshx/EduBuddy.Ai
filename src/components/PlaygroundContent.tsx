@@ -1,5 +1,8 @@
-
 import React, { useState } from 'react';
+import PdfViewerContent from './PdfViewerContent';
+import PodcastContent from './PodcastContent';
+import FlashcardsContent from './FlashcardsContent';
+import QuizContent from './QuizContent';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -29,6 +32,23 @@ const PlaygroundContent = () => {
     }
   ]);
   const { toast } = useToast();
+
+  // Render different components based on selected tool
+  if (selectedTool === 'notes') {
+    return <PdfViewerContent />;
+  }
+  
+  if (selectedTool === 'podcast') {
+    return <PodcastContent />;
+  }
+  
+  if (selectedTool === 'flashcards') {
+    return <FlashcardsContent />;
+  }
+  
+  if (selectedTool === 'quiz') {
+    return <QuizContent />;
+  }
 
   const tools = [
     { id: 'notes', name: 'Notes', icon: FileText },
