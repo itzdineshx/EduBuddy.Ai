@@ -1,17 +1,22 @@
 
 import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import AIPlayground from '@/components/AIPlayground';
+import { 
+  SidebarProvider
+} from '@/components/ui/sidebar';
+import DashboardSidebar from '@/components/DashboardSidebar';
+import PlaygroundContent from '@/components/PlaygroundContent';
 
 const Playground = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-1 bg-gray-50 py-12">
-        <AIPlayground />
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-black">
+      <SidebarProvider>
+        <div className="flex min-h-screen w-full">
+          <DashboardSidebar />
+          <main className="flex-1 flex flex-col">
+            <PlaygroundContent />
+          </main>
+        </div>
+      </SidebarProvider>
     </div>
   );
 };
