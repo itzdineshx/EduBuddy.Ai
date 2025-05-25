@@ -1,7 +1,10 @@
 
 import React from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const TrustedBy = () => {
+  const { theme } = useTheme();
+  
   const logos = [
     { name: 'Stanford', text: 'Stanford' },
     { name: 'MIT', text: 'MIT' },
@@ -12,18 +15,24 @@ const TrustedBy = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className={`py-20 transition-all duration-300 ${theme === 'dark' ? 'bg-background border-t border-border/30' : 'bg-accent/30'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-            Trusted by students and educators at
-          </p>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
+            <span className="text-sm font-medium text-primary uppercase tracking-wide">
+              Trusted by students and educators at
+            </span>
+          </div>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center">
           {logos.map((logo, index) => (
-            <div key={index} className="flex justify-center">
-              <div className="text-2xl font-bold text-gray-400 hover:text-gray-600 transition-colors duration-300">
+            <div key={index} className="flex justify-center group">
+              <div className={`text-2xl font-bold transition-all duration-300 group-hover:scale-110 ${
+                theme === 'dark' 
+                  ? 'text-muted-foreground hover:text-primary' 
+                  : 'text-gray-400 hover:text-primary'
+              }`}>
                 {logo.text}
               </div>
             </div>
