@@ -14,10 +14,10 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Brain className="h-8 w-8 text-blue-400" />
-              <span className="text-xl font-bold">Turbolearn.ai</span>
+              <span className="text-xl font-bold">EduBuddy.ai</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
-              Accelerate your learning with AI-powered tools. Generate content, summarize text, and enhance your educational experience.
+              Your smart learning companion. Accelerate your education with AI-powered tools that adapt to your learning style and help you achieve academic success.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -41,7 +41,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/features" className="text-gray-400 hover:text-white transition-colors">Features</Link></li>
               <li><Link to="/pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link to="/docs" className="text-gray-400 hover:text-white transition-colors">Documentation</Link></li>
+              <li><Link to="/playground" className="text-gray-400 hover:text-white transition-colors">Try Free</Link></li>
               <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
               <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
@@ -50,7 +50,7 @@ const Footer = () => {
           {/* Newsletter */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
-            <p className="text-gray-400 mb-4">Get the latest updates and features.</p>
+            <p className="text-gray-400 mb-4">Get the latest features and study tips.</p>
             <div className="flex space-x-2">
               <Input
                 type="email"
@@ -67,7 +67,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Turbolearn.ai. All rights reserved.
+              © 2024 EduBuddy.ai. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/privacy" className="text-gray-400 hover:text-white text-sm">Privacy Policy</Link>

@@ -41,15 +41,15 @@ const Hero = () => {
 
         {/* Main heading */}
         <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-tight">
-          Transform Your Learning
+          Your Smart Learning
           <br />
-          <span className="text-gradient">with AI Magic</span>
+          <span className="text-gradient">Companion</span>
         </h1>
 
         {/* Subheading */}
         <p className="text-xl lg:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
-          Upload documents, generate podcasts, create flashcards, and chat with AI. 
-          Experience the future of personalized education.
+          EduBuddy.ai revolutionizes your study experience with AI-powered tools. 
+          Upload documents, generate podcasts, create flashcards, and chat with your personal AI tutor.
         </p>
 
         {/* CTA Buttons */}
@@ -77,16 +77,16 @@ const Hero = () => {
         {/* Stats with enhanced dark mode styling */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
           <div className={`text-center p-6 glass-effect rounded-2xl hover-lift ${theme === 'dark' ? 'bg-card/60 border-border/30' : ''}`}>
-            <div className="text-3xl font-bold text-primary mb-2">10K+</div>
-            <div className="text-muted-foreground">Students Learning</div>
+            <div className="text-3xl font-bold text-primary mb-2">15K+</div>
+            <div className="text-muted-foreground">Active Learners</div>
           </div>
           <div className={`text-center p-6 glass-effect rounded-2xl hover-lift ${theme === 'dark' ? 'bg-card/60 border-border/30' : ''}`}>
-            <div className="text-3xl font-bold text-primary mb-2">50K+</div>
-            <div className="text-muted-foreground">Documents Processed</div>
+            <div className="text-3xl font-bold text-primary mb-2">100K+</div>
+            <div className="text-muted-foreground">Study Materials</div>
           </div>
           <div className={`text-center p-6 glass-effect rounded-2xl hover-lift ${theme === 'dark' ? 'bg-card/60 border-border/30' : ''}`}>
-            <div className="text-3xl font-bold text-primary mb-2">99%</div>
-            <div className="text-muted-foreground">Success Rate</div>
+            <div className="text-3xl font-bold text-primary mb-2">98%</div>
+            <div className="text-muted-foreground">Student Satisfaction</div>
           </div>
         </div>
       </div>

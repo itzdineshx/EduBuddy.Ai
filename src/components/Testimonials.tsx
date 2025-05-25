@@ -9,7 +9,7 @@ const testimonials = [
     name: "Sarah Chen",
     role: "Computer Science Student",
     university: "Stanford University",
-    content: "Turbolearn.ai has completely transformed how I study. The AI summarization feature helped me digest complex research papers in minutes instead of hours.",
+    content: "EduBuddy.ai has completely transformed how I study. The AI summarization feature helped me digest complex research papers in minutes instead of hours.",
     rating: 5,
     avatar: "SC"
   },
@@ -25,7 +25,7 @@ const testimonials = [
     name: "Emily Johnson",
     role: "High School Teacher",
     university: "Lincoln High School",
-    content: "I use Turbolearn.ai to create engaging lesson materials and quizzes. My students love the interactive content, and it saves me hours of preparation time.",
+    content: "I use EduBuddy.ai to create engaging lesson materials and quizzes. My students love the interactive content, and it saves me hours of preparation time.",
     rating: 5,
     avatar: "EJ"
   },
@@ -72,7 +72,7 @@ const Testimonials = () => {
             <span className="text-gradient block">Worldwide</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Join thousands of learners who are accelerating their education with AI-powered tools.
+            Join thousands of learners who are accelerating their education with EduBuddy.ai's powerful AI tools.
           </p>
         </div>
 

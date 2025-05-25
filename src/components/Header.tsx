@@ -39,7 +39,7 @@ const Header = () => {
             <div className="w-12 h-12 bg-gradient-to-r from-primary to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
               <Brain className="h-7 w-7 text-white" />
             </div>
-            <span className="text-2xl font-bold text-foreground">turbolearn.ai</span>
+            <span className="text-2xl font-bold text-foreground">EduBuddy.ai</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -97,6 +97,14 @@ const Header = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <Button
+              onClick={() => navigate('/login')}
+              variant="ghost"
+              className="px-4 py-2 rounded-2xl font-medium hover-scale text-muted-foreground hover:text-foreground"
+            >
+              Login
+            </Button>
 
             <Button
               onClick={() => navigate('/signup')}
@@ -169,6 +177,18 @@ const Header = () => {
                 >
                   <Settings className="mr-3 h-4 w-4" />
                   Settings
+                </Button>
+                
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    navigate('/login');
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full justify-start text-muted-foreground hover:text-foreground hover:bg-accent rounded-xl"
+                >
+                  <User className="mr-3 h-4 w-4" />
+                  Login
                 </Button>
                 
                 <Button

@@ -20,7 +20,7 @@ import {
   HelpCircle,
   Settings, 
   Sparkles,
-  ChevronLeft
+  Home
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
@@ -33,6 +33,8 @@ const DashboardSidebar = () => {
       navigate(path, { state: { tool } });
     } else if (path === '/settings') {
       navigate('/settings');
+    } else if (path === '/dashboard') {
+      navigate('/dashboard');
     } else {
       navigate(path);
     }
@@ -42,6 +44,9 @@ const DashboardSidebar = () => {
     if (path === '/settings') {
       return location.pathname === '/settings';
     }
+    if (path === '/dashboard') {
+      return location.pathname === '/dashboard';
+    }
     if (path === '/playground' && tool) {
       return location.pathname === '/playground';
     }
@@ -49,6 +54,7 @@ const DashboardSidebar = () => {
   };
 
   const menuItems = [
+    { id: 'dashboard', name: 'Dashboard', icon: Home, path: '/dashboard' },
     { id: 'notes', name: 'Notes', icon: FileText, path: '/playground', tool: 'notes' },
     { id: 'chatbot', name: 'Chat Bot', icon: MessageSquare, path: '/playground', tool: 'chat' },
     { id: 'podcast', name: 'Podcast', icon: Mic, path: '/playground', tool: 'podcast' },
@@ -65,7 +71,7 @@ const DashboardSidebar = () => {
             <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
               <Brain className="h-6 w-6 text-white" />
             </div>
-            <span className="text-foreground font-bold text-xl">turbolearn ai</span>
+            <span className="text-foreground font-bold text-xl">EduBuddy.ai</span>
           </div>
           <ThemeToggle />
         </div>
