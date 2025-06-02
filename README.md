@@ -1,7 +1,7 @@
 
-# Turbolearn.ai - AI-Powered Learning Platform
+# EduBuddy.ai - AI-Powered Learning Platform
 
-A comprehensive clone of Turbolearn.ai featuring AI-powered learning tools including text summarization, Q&A generation, essay assistance, and more. Built with React, TypeScript, and integrated with Google Gemini 2.0-Flash API.
+A comprehensive clone of EduBuddy.ai featuring AI-powered learning tools including text summarization, Q&A generation, essay assistance, and more. Built with React, TypeScript, and integrated with Google Gemini 2.0-Flash API.
 
 ## 🚀 Features
 
@@ -48,7 +48,7 @@ A comprehensive clone of Turbolearn.ai featuring AI-powered learning tools inclu
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd turbolearn-ai-clone
+   cd EduBuddy-ai-clone
    ```
 
 2. **Install dependencies**
@@ -192,8 +192,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 📞 Support
 
 For support and questions:
-- **Email**: support@turbolearn.ai
-- **Documentation**: [docs.turbolearn.ai]
+- **Email**: support@EduBuddy.ai
+- **Documentation**: [docs.EduBuddy.ai]
 - **Issues**: GitHub Issues
 
 ## 🎯 Roadmap
