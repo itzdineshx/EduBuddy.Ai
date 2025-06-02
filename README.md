@@ -198,7 +198,7 @@ For support and questions:
 
 ## 🎯 Roadmap
 
-- [ ] User dashboard and project management
+- [x] User dashboard and project management
 - [ ] Advanced AI model integration
 - [ ] Collaborative features
 - [ ] Mobile app development
